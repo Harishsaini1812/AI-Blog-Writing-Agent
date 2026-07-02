@@ -1,120 +1,168 @@
-🚀 AI Blog Writing Agent
+# 🧠 AI Blog Writing Agent (Multi-Agent System)
 
-An end-to-end multi-agent AI content generation system that automatically creates high-quality blog posts using LLMs, RAG, web search, and AI image generation. The system is built using a modular agentic architecture powered by LangGraph and exposed via FastAPI + Streamlit UI.
+An advanced AI-powered blog generation system built using LangGraph, FastAPI, Streamlit, and OpenAI APIs. This project demonstrates a complete multi-agent architecture where different AI agents collaborate to plan, research, write, review, and generate images for blogs.
 
-📌 Overview
+---
 
-This project automates the entire blog creation workflow:
+## 🚀 Features
 
-Topic planning
-Web research
-Knowledge retrieval (RAG)
-Blog writing
-Content review & optimization
-AI image generation
-Real-time streaming output
+- 🧩 Multi-Agent System using LangGraph
+  - Planner Agent → Creates structured blog outline
+  - Research Agent → Fetches web + PDF knowledge
+  - Writer Agent → Generates high-quality blog content
+  - Reviewer Agent → Improves SEO, grammar, readability
+  - Image Prompt Agent → Generates image prompt
+  - Image Generator Agent → Creates featured blog image
 
-It behaves like an autonomous AI writing assistant capable of producing SEO-optimized blogs with contextual accuracy.
+- 🌐 Real-time Web Search using Tavily API
+- 📚 Retrieval-Augmented Generation (RAG) using FAISS
+- 🧠 PDF-based knowledge base support
+- ⚡ Streaming blog generation (real-time output)
+- 🖼 AI-generated featured blog images (OpenAI GPT-image-1)
+- 📄 PDF upload and processing system
+- 🔎 Semantic search over documents
+- 🎨 Streamlit-based interactive frontend
+- 🐳 Docker-ready architecture (optional)
+- ☁️ Deployable on AWS EC2
 
-✨ Features
-🤖 Multi-Agent System (LangGraph)
-Planner Agent
-Research Agent
-Writer Agent
-Reviewer Agent
-Image Generator Agent
-🌐 Real-Time Web Search Integration
-Uses Tavily API for up-to-date information
-📚 Retrieval-Augmented Generation (RAG)
-FAISS-based vector database for document retrieval
-PDF ingestion and semantic search
-🧠 LLM-Powered Content Creation
-OpenAI GPT models for blog generation and refinement
-🖼 AI Image Generation
-Automatically generates featured blog images
-⚡ Streaming Output
-Real-time blog generation using FastAPI streaming
-🖥 Interactive Frontend
-Streamlit-based UI for seamless user interaction
-🏗 Architecture
-User Input (Topic)
-        ↓
-   Planner Agent
-        ↓
-  Research Agent (Web + RAG)
-        ↓
-   Writer Agent (Blog Draft)
-        ↓
-  Reviewer Agent (SEO + Polish)
-        ↓
- Image Prompt Agent
-        ↓
- Image Generator Agent
-        ↓
- Final Blog Output
-🛠 Tech Stack
-Backend: FastAPI
-Frontend: Streamlit
-LLMs: OpenAI GPT models
-Agent Framework: LangGraph
-RAG Pipeline: LangChain + FAISS
-Web Search: Tavily API
-Embeddings: OpenAI Embeddings
-Image Generation: OpenAI / Gemini API
-Deployment: Docker, AWS EC2
-📂 Project Structure
-ai-blog-writing-agent/
+---
+
+## 🏗️ Tech Stack
+
+- Backend: FastAPI
+- Frontend: Streamlit
+- AI Models: OpenAI GPT-4.1-mini, GPT-image-1
+- Frameworks: LangGraph, LangChain
+- Search API: Tavily
+- Vector Database: FAISS
+- Embeddings: text-embedding-3-small
+- PDF Processing: PyPDFLoader
+- Deployment: Docker, AWS EC2
+
+---
+
+## 📂 Project Structure
+
+AI-Blog-Agent/
 │
-├── backend.py              # FastAPI backend + LangGraph agents
+├── backend.py              # FastAPI + LangGraph workflow
 ├── frontend.py             # Streamlit UI
-├── data/                   # Uploaded PDFs
-├── temp/                   # Generated images
-├── faiss_index/            # Vector DB
 ├── requirements.txt
-├── .env.example
+├── .env                    # API keys (not committed)
+│
+├── data/                   # Uploaded PDFs
+├── faiss_index/            # Vector database storage
+├── temp/                   # Generated images
+│
 └── README.md
-⚙️ Installation & Setup
-1. Clone Repository
-git clone https://github.com/your-username/ai-blog-writing-agent.git
-cd ai-blog-writing-agent
-2. Create Virtual Environment
-python -m venv env
-source env/bin/activate   # Linux/Mac
-env\Scripts\activate      # Windows
-3. Install Dependencies
-pip install -r requirements.txt
-4. Setup Environment Variables
 
-Create a .env file:
+---
+
+## ⚙️ Installation
+
+### 1. Clone Repository
+git clone https://github.com/your-username/ai-blog-agent.git
+cd ai-blog-agent
+
+---
+
+### 2. Create Virtual Environment
+python -m venv env
+
+# Windows
+env\Scripts\activate
+
+# Mac/Linux
+source env/bin/activate
+
+---
+
+### 3. Install Dependencies
+pip install -r requirements.txt
+
+---
+
+### 4. Setup Environment Variables
+
+Create a `.env` file and add:
 
 OPENAI_API_KEY=your_openai_api_key
 TAVILY_API_KEY=your_tavily_api_key
 GOOGLE_API_KEY=your_google_api_key
-5. Run Backend (FastAPI)
+
+---
+
+## ▶️ Run Project
+
+### Start Backend (FastAPI)
 uvicorn backend:app --reload
-6. Run Frontend (Streamlit)
+
+---
+
+### Start Frontend (Streamlit)
 streamlit run frontend.py
-📊 Key Highlights
-End-to-end autonomous content generation system
-Modular agent-based architecture using LangGraph
-Real-time streaming responses
-Context-aware RAG system using FAISS
-Integrated web search + generative AI pipeline
-🧠 Future Improvements
-📄 PDF export of generated blogs
-🔗 Direct publishing to Medium / WordPress
-📊 SEO scoring system
-🧾 Multi-language blog generation
-🎙 Voice-based input/output system
-☁ Cloud deployment with CI/CD pipeline
-📸 Screenshots
 
-Add your Streamlit UI screenshots here
+---
 
-👨‍💻 Author
+## 🧠 How It Works
+
+1. User enters topic in Streamlit UI  
+2. Planner Agent creates blog outline  
+3. Research Agent gathers web + PDF context  
+4. Writer Agent generates blog content  
+5. Reviewer Agent improves final blog  
+6. Image Prompt Agent generates prompt  
+7. Image Generator Agent creates featured image  
+8. Final blog + image shown in UI  
+
+---
+
+## 📌 API Endpoints
+
+- POST /upload → Upload PDF
+- POST /search → Ask questions from documents (RAG)
+- POST /planner → Generate blog outline
+- POST /graph → Full blog generation pipeline
+- POST /stream-writer → Streaming blog generation
+
+---
+
+## 🖼 Output Example
+
+- SEO optimized blog
+- Markdown formatted content
+- AI generated featured image
+- Real-time streaming writing experience
+
+---
+
+## 🔥 Key Highlights
+
+- Multi-agent AI architecture
+- Real-time streaming output
+- Hybrid knowledge system (Web + PDF RAG)
+- Production-style FastAPI backend
+- Clean Streamlit frontend integration
+
+---
+
+## 📈 Future Improvements
+
+- Download blog as PDF
+- User authentication system
+- Database integration (MongoDB/PostgreSQL)
+- Blog history dashboard
+- Cloud deployment (AWS + CI/CD)
+- Multi-language blog generation
+
+---
+
+## 👨‍💻 Author
 
 Harish Kumar Saini
 
-⭐ Show Your Support
+---
 
-If you like this project, consider giving it a ⭐ on GitHub!
+## ⭐ Support
+
+If you like this project, please give it a star ⭐ on GitHub.
